@@ -14,7 +14,6 @@ setup(name='Liquid',
       description='',
       long_description=README + '\n\n' + CHANGES,
       install_requires=requires,
-      url='http://localhost',
       packages=['liquid'],
       test_suite='liquid.tests'
 )
