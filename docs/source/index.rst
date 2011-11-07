@@ -6,17 +6,15 @@
 LiquidAuth Docs
 ==================================
 
-Contents:
-
 .. toctree::
    :maxdepth: 2
 
+   quickstart
 
-
-Indices and tables
+Index and Glossary
 ==================
 
+* :ref:`glossary`
 * :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`
 
