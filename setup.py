@@ -7,7 +7,7 @@ README = open(os.path.join(here, 'README')).read()
 CHANGES = open(os.path.join(here, 'CHANGES')).read()
 
 requires = ['pyramid',
-            'sqlalchemy'} 
+            'sqlalchemy']
 
 setup(name='Liquid',
       version='0.1dev',
