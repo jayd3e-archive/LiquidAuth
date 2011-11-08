@@ -1,20 +1,17 @@
 import unittest
-import os
-import base64
-from datetime import datetime
-from liquid.models import initializeBase
+from liquid.models import Base
 from liquid.models import AclUsersModel
 from liquid.models import AclUsersResourcesModel
 from liquid.models import AclResourcesModel
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy import engine_from_config
+from sqlalchemy import create_engine
 
 class TestModels(unittest.TestCase):
     def setUp(self):
-        settings = {'sqlalchemy.url' : 'sqlite://'}
+        url = 'sqlite://'
         
-        engine = engine_from_config(settings, 'sqlalchemy.')
-        initializeBase(engine)
+        engine = create_engine(url)
+        Base.metadata.create_all(engine)
         self.Session = sessionmaker(bind=engine)
         
     def testAclUsersModel(self):

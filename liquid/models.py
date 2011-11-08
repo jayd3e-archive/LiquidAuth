@@ -4,9 +4,6 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
 Base = declarative_base()
-def initializeBase(engine):
-    Base.metadata.bind = engine
-    Base.metadata.create_all(engine)
 
 class AclUsersModel(Base):
     __tablename__ = 'acl_users'
@@ -14,8 +11,8 @@ class AclUsersModel(Base):
     id = Column(Integer, primary_key=True)
     parent_id = Column(Integer, ForeignKey("acl_users.id"))
     name = Column(String, unique=True)
-    left = Column(Integer)
-    right = Column(Integer)
+    lft = Column(Integer)
+    rgt = Column(Integer)
     parent = relationship('AclUsersModel', uselist=False)
     resources = association_proxy('users_resources', 'resources')
 
@@ -26,8 +23,8 @@ class AclUsersModel(Base):
         return "<AclUsers('%s', '%s', '%s', '%s', '%s')>" % (self.id,
                                                              self.parent_id,
                                                              self.name,
-                                                             self.left,
-                                                             self.right)
+                                                             self.lft,
+                                                             self.rgt)
 
 class AclResourcesModel(Base):
     __tablename__ = 'acl_resources'
@@ -35,8 +32,8 @@ class AclResourcesModel(Base):
     id = Column(Integer, primary_key=True)
     parent_id = Column(Integer, ForeignKey("acl_resources.id"))
     name = Column(String)
-    left = Column(Integer)
-    right = Column(Integer)
+    lft = Column(Integer)
+    rgt = Column(Integer)
     parent = relationship('AclResourcesModel', uselist=False)
     users = association_proxy('users_resources', 'users')
 
@@ -47,8 +44,8 @@ class AclResourcesModel(Base):
         return "<AclResources('%s', '%s', '%s', '%s', '%s')>" % (self.id,
                                                                  self.parent_id,
                                                                  self.name,
-                                                                 self.left,
-                                                                 self.right)
+                                                                 self.lft,
+                                                                 self.rgt)
 
 class AclUsersResourcesModel(Base):
     __tablename__ = 'acl_users_resources'
