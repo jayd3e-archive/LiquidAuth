@@ -13,7 +13,7 @@ class AclUsersModel(Base):
     
     id = Column(Integer, primary_key=True)
     parent_id = Column(Integer, ForeignKey("acl_users.id"))
-    name = Column(String)
+    name = Column(String, unique=True)
     left = Column(Integer)
     right = Column(Integer)
     parent = relationship('AclUsersModel', uselist=False)
